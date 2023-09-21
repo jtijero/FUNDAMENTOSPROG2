@@ -61,15 +61,18 @@ public class Ejercicio02 {
 			String letra;
 			String [] palabras = {"programacion", "java", "identacion", "clases",
 			"objetos", "desarrollador", "pruebas"};
-
 			String palSecreta = getPalabraSecreta(palabras);
+			String [] array = new String [palSecreta.length()];			
+			for (int i = 0; i < palSecreta.length(); i++){
+				array [i] = "_ ";
+			}
 			System.out.println(figuras[0]);
 			mostrarBlancos(palSecreta);
 			System.out.println("\n");
 			while(contador <= 6){
 				letra = ingreseLetra();
 				if (letraEnPalabraSecreta(letra, palSecreta)){
-					mostrarBlancosActualizados(letra, palSecreta);
+					mostrarBlancosActualizados(letra, palSecreta, array);
 					acierto++;
 				}
 				else {
@@ -105,7 +108,8 @@ public class Ejercicio02 {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Ingrese letra: ");
 			laLetra = sc.next();
-			while(laLetra.length()!= 1  || laLetra.equals("0") || laLetra.equals("1") || laLetra.equals("2") || laLetra.equals("3") || laLetra.equals("4") || laLetra.equals("5") || laLetra.equals("6") || laLetra.equals("7") || laLetra.equals("8") || laLetra.equals("9") ){
+			char Letra = laLetra.charAt(0);
+			while(laLetra.length()!= 1  || Letra < 97 || Letra > 122){
 				System.out.println("Ingrese letra: ");
 				laLetra = sc.next();				
 			}
@@ -119,14 +123,13 @@ public class Ejercicio02 {
 			}
 			return false;
 		}
-		public static void mostrarBlancosActualizados(String letra, String palSecreta){
+		public static void mostrarBlancosActualizados(String letra, String palSecreta, String[] str){
 			System.out.println("PROCESANDO.....");
 			for (int i = 0; i < palSecreta.length(); i++){
 				if (letra.equals(palSecreta.substring(i,i+1))){
-					System.out.print(letra + " ");
-				} else {
-					System.out.print("_ ");
+					str [i] = letra;
 				}
+				System.out.print(str [i]);
 			}
 			System.out.println();
 		}
