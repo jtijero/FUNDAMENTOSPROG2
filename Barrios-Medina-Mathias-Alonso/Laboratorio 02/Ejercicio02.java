@@ -5,55 +5,62 @@
 import java.util.Scanner;
 public class Ejercicio02 {
 		public static void main(String []args){
-			String ahor1 = " +---+ \n"+
-					       " | | \n" +
-			               " | \n" +
-			               " | \n" +
-			               " | \n" +
-			               " | \n" +
-			               "========= ";
-			String ahor2 = " +---+ \n"+
-			               " | | \n"+
-			               " O | \n"+
-			               " | \n"+
-			               " | \n"+
-			               " | \n"+
-			               "=========";
-			String ahor3 = " +---+ \n"+
-			               " | | \n"+
-			               " O | \n"+
-			               " | | \n"+
-			               "   | \n"+
-			               "   | \n"+
-			               "=========";
-			String ahor4 = " +---+ \n"+
-			               " |   | \n"+
-			               " O   | \n"+
-			               " /|  | \n"+
-			               "     | \n"+
-			               "     | \n"+
-						   "=========";
-			String ahor5 = " +---+ \n"+
-			               " |   | \n"+
-			               " O   | \n"+
-			               " /|\\| \n"+
-			               "     | \n"+
-			               "     | \n"+
-			               "=========";
-			String ahor6 = " +---+ \n"+
-						   " |   | \n"+
-						   " O   | \n"+
-			               " /|\\| \n"+
-			               "/    | \n"+
-			               "     | \n"+
-			               "=========";
-			String ahor7 = " +---+ \n"+
-			               " |   |   \n"+
-			               " O   |   \n"+
-			               " /|\\|   \n"+
-			               " / \\|   \n"+
-			               "     |   \n"+
-			               "=========";
+			String ahor1 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor2 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor3 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  " |   | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor4 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  "/|   | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor5 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  "/|\\  | \n" +
+			  "     | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor6 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  "/|\\  | \n" +
+			  "/    | \n" +
+			  "     | \n" +
+			  "========= ";
+			String ahor7 =
+			  " +---+ \n" +
+			  " |   | \n" +
+			  " O   | \n" +
+			  "/|\\  | \n" +
+			  "/ \\  | \n" +
+			  "     | \n" +
+			  "========= ";
 			String [] figuras = {ahor1, ahor2, ahor3,ahor4,ahor5,ahor6,ahor7};
 			int contador = 0;
 			int turnos = 0;
@@ -70,7 +77,7 @@ public class Ejercicio02 {
 			mostrarBlancos(palSecreta);
 			System.out.println("\n");
 			while(contador <= 6){
-				letra = ingreseLetra();
+				letra = ingreseLetra(array);
 				if (letraEnPalabraSecreta(letra, palSecreta)){
 					mostrarBlancosActualizados(letra, palSecreta, array);
 					acierto++;
@@ -80,16 +87,27 @@ public class Ejercicio02 {
 					contador = contador +1;
 				}
 				turnos++;
-				if(acierto == palSecreta.length()){
-						System.out.println("Ganó el juego en " + turnos);
-						break;
+				if(verifGanar(array, palSecreta)){
+					System.out.println("Ganó el juego en " + turnos + " turnos");
+					break;
 				}
 			}
 			if (contador >6){
-				System.out.println("Perdiste en: " + turnos);
+				System.out.println("Perdiste en: " + turnos + " turnos");
 			}
 			System.out.println("\n");
 		}
+		public static boolean verifGanar (String [] str , String palabra ){
+			String verifica = "";
+			for (int i = 0; i < palabra.length(); i++){
+				verifica += str [i];
+			}
+			if (verifica.equals(palabra)){
+				return true;
+			}
+			return false;
+		}
+
 		public static String getPalabraSecreta(String [] lasPalabras){
 			String palSecreta;
 			int ind;
@@ -103,17 +121,24 @@ public class Ejercicio02 {
 			System.out.print("_ " );
 
 		}
-		public static String ingreseLetra(){
+		public static String ingreseLetra(String [] str){
 			String laLetra;
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Ingrese letra: ");
 			laLetra = sc.next();
 			char Letra = laLetra.charAt(0);
-			while(laLetra.length()!= 1  || Letra < 97 || Letra > 122){
+			while(laLetra.length()!= 1  || Letra < 97 || Letra > 122 || verifAnterior(str, laLetra)){
 				System.out.println("Ingrese letra: ");
 				laLetra = sc.next();				
 			}
 			return laLetra;
+		}
+		public static boolean verifAnterior(String [] str, String letra){
+			for (int i = 0; i < str.length; i++){
+				if (letra.equals(str[i]))
+					return true;
+			}
+			return false;
 		}
 		public static boolean letraEnPalabraSecreta(String letra, String palSecreta ){
 			for (int i = 0; i < palSecreta.length() ; i++){
