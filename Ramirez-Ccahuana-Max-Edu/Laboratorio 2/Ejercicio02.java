@@ -61,17 +61,20 @@ public class Ejercicio02 {
     "objetos", "desarrollador", "pruebas"};
     String palSecreta = getPalabraSecreta(palabras);
     System.out.println(figuras[0]);
-    mostrarBlancos(palSecreta);
+    String progreso = mostrarBlancos(palSecreta);
     System.out.println("\n");
-    while(contador <= 6){
+    //Aprovecharemos los metodos mostrarBlancos y mostrarBlancosActualizados para actualizar el String progreso
+    while(contador <= 6 && !progreso.equals(palSecreta)){
       letra = ingreseLetra();
       if(letraEnPalabraSecreta(letra, palSecreta))
-        mostrarBlancosActualizados(letra);
-      else
+        progreso = mostrarBlancosActualizados(progreso, palSecreta, letra);
+      else{
         System.out.println(figuras[contador]);
-      contador = contador + 1;
+        contador++;
+        imprimir(progreso);
+      }
+      System.out.println(progreso);
     }
-    //COMPLETAR PARA INDICAR SI GANÓ, PERDIÓ Y CUÁNTOS TURNOS NECESITÓ
     if(contador == 7)
       System.out.println(">>> GAME OVER :( <<<");
     else{
@@ -88,28 +91,57 @@ public class Ejercicio02 {
     ind = (int) (Math.random() * (indiceMayor - indiceMenor + 1) + indiceMenor);
     return lasPalabras[ind];
   }
-  public static void mostrarBlancos(String palabra){
+  public static String mostrarBlancos(String palabra){
+    String str = "";
     for(int i=0; i< palabra.length(); i++)
-      System.out.print("_ " );
-
+      str = str + "_";
+    imprimir(str);
+    return str;
   }
   public static String ingreseLetra(){
     String laLetra;
     Scanner sc = new Scanner(System.in);
     System.out.println("Ingrese letra: ");
     laLetra = sc.next();
-    while(laLetra.length()!= 1){
-      System.out.println("Ingrese letra: "); //COMPLETAR PARA VALIDAR CARACTERES PERMITIDOS
+    while(laLetra.length() != 1 && !letraValida(laLetra)){
+      System.out.println("Ingrese letra: ");
       laLetra = sc.next();
     }
     return laLetra;
   }
   public static boolean letraEnPalabraSecreta(String letra, String palSecreta ){
-    //COMPLETAR
+    for(int i = 0; i < palSecreta.length(); i++){
+      if(letra.equals(palSecreta.substring(i, i + 1)))
+        return true;
+    }
     return false;
   }
-  public static void mostrarBlancosActualizados(String letra){
-    //COMPLETAR
+  public static String mostrarBlancosActualizados(String progreso, String palSecreta, String letra){
     System.out.println("PROCESANDO.....");
+    String nProgreso = "";
+    for(int i = 0; i < palSecreta.length(); i++){
+      if(palSecreta.charAt(i) == letra.charAt(0)){
+        nProgreso = nProgreso + letra;
+      }else{
+        nProgreso = nProgreso + progreso.charAt(i);
+      }
+    }
+    imprimir(nProgreso);
+    return nProgreso;
+    
+  }
+  public static boolean letraValida(String laLetra){
+    try{
+      Integer.parseInt(laLetra);
+    }catch(NumberFormatException ex){
+      return true;
+    }
+    return false;
+  }
+  public static void imprimir(String str){
+    for(int i = 0; i < str.length(); i++){
+      System.out.print(str.charAt(i) + " ");
+    }
+    System.out.print("\n");
   }
 }
