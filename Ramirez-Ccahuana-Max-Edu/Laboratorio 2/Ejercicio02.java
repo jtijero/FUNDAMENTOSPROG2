@@ -73,11 +73,12 @@ public class Ejercicio02 {
         contador++;
         imprimir(progreso);
       }
+      System.out.println("\n");
     }
     if(contador == 7)
       System.out.println(">>> GAME OVER :( <<<");
     else{
-      System.out.println(">>> ¡CORRECTO! :) <<<" + 
+      System.out.println(">>> ¡CORRECTO! :) <<<\n" + 
                          "Lo lograste en " + contador + " turno(s)");
     }
     System.out.println("\n");
@@ -100,16 +101,16 @@ public class Ejercicio02 {
   public static String ingreseLetra(){
     String laLetra;
     Scanner sc = new Scanner(System.in);
-    System.out.println("Ingrese letra: ");
+    System.out.println("> Ingrese letra: ");
     laLetra = sc.next();
     while(laLetra.length() != 1 && !letraValida(laLetra)){
-      System.out.println("Ingrese letra: ");
+      System.out.println("> Ingrese letra: ");
       laLetra = sc.next();
     }
     return laLetra;
   }
   public static String mostrarBlancosActualizados(String progreso, String palSecreta, String letra){
-    System.out.println("PROCESANDO.....");
+    System.out.println("> PROCESANDO.....");
     String nProgreso = "";
     for(int i = 0; i < palSecreta.length(); i++){
       if(palSecreta.charAt(i) == letra.charAt(0)){
