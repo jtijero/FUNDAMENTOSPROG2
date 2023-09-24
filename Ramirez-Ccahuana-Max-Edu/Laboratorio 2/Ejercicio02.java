@@ -1,7 +1,7 @@
 // Laboratorio Nro 2 - Ejercicio 1
 // Primer avance
 //Autor: Ramirez Ccahuana Max Edu
-//Tiempo: -- minutos
+//Tiempo: 60 minutos
 import java.util.*;
 public class Ejercicio02 {
   public static void main(String[] args){
@@ -66,14 +66,13 @@ public class Ejercicio02 {
     //Aprovecharemos los metodos mostrarBlancos y mostrarBlancosActualizados para actualizar el String progreso
     while(contador <= 6 && !progreso.equals(palSecreta)){
       letra = ingreseLetra();
-      if(letraEnPalabraSecreta(letra, palSecreta))
+      if(palSecreta.contains(letra))
         progreso = mostrarBlancosActualizados(progreso, palSecreta, letra);
       else{
         System.out.println(figuras[contador]);
         contador++;
         imprimir(progreso);
       }
-      System.out.println(progreso);
     }
     if(contador == 7)
       System.out.println(">>> GAME OVER :( <<<");
@@ -108,13 +107,6 @@ public class Ejercicio02 {
       laLetra = sc.next();
     }
     return laLetra;
-  }
-  public static boolean letraEnPalabraSecreta(String letra, String palSecreta ){
-    for(int i = 0; i < palSecreta.length(); i++){
-      if(letra.equals(palSecreta.substring(i, i + 1)))
-        return true;
-    }
-    return false;
   }
   public static String mostrarBlancosActualizados(String progreso, String palSecreta, String letra){
     System.out.println("PROCESANDO.....");
