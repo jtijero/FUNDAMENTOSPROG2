@@ -114,9 +114,6 @@ public class Ahorcado{
   }
   public static void mostrarBlancosActualizados(String letra) {
 	//COMPLETAR
-	  String reemplazar = "_";
-	  System.out.println("PROCESANDO.....");
-	  reemplazar = letra;
-	  System.out.print(reemplazar);
+	
   }
 }
