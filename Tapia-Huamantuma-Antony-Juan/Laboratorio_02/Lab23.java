@@ -88,15 +88,20 @@ public class Lab23 {
 		            System.out.print("_ " );
 
 		}
+		//Metodo para que ingresar la letra y comprobar si es valida
 		public static String ingreseLetra(){
 		        String laLetra;
 		        Scanner sc = new Scanner(System.in);
 		        System.out.println("Ingrese letra: ");
 		        laLetra = sc.next();
 		        while(laLetra.length()!= 1){
-		                System.out.println("Ingrese letra: "); //COMPLETAR PARA VALIDAR CARACTERES PERMITIDOS
+		                System.out.println("Ingrese letra: ");
 		                laLetra = sc.next();
 		        }
+				while(Character.isLetter(laLetra.charAt(0)) == false){
+					    System.out.println("Ingrese letra: ");
+		                laLetra = sc.next();
+				}
 		        return laLetra;
 		}
 		//Metodo para conmprobar si la letra esta en la palabra
