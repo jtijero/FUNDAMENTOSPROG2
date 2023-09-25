@@ -1,0 +1,14 @@
+import java.util.*;
+public class ejercicio3 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String[] soldados = new String[5];
+		for (int i=0; i<5; i++) {
+			System.out.println("Ingrese el nombre del soldado " + (i+1) + ":");
+			soldados[i] = sc.next();			
+		}
+		for (int j=0; j<5; j++) {
+			System.out.println("nombre " + (j+1) + ":" + "\n" + soldados[j]);
+		}
+	}
+}
