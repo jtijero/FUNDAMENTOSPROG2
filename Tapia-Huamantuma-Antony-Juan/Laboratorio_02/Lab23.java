@@ -121,7 +121,7 @@ public class Lab23 {
 			}
 			return Avance;
 		}
-		//Metodo para actualiar lo mostrado
+		//Metodo para actualiar lo mostrado	
 		public static String[] Actualizado(String[] Avance, String Secreto, String letra){
 			String[] AvanceActualizado = new String[Avance.length];
 			for(int i = 0; i < Secreto.length(); i++){
@@ -133,7 +133,10 @@ public class Lab23 {
 			}
 			return AvanceActualizado;
 		}
-		public static void mostrarBlancosActualizados(String letra){
-		        System.out.println("PROCESANDO.....");
+		//Metodo para imprimir el avance actualizado
+		public static void mostrarBlancosActualizados(String[] Avance){
+			for(int i = 0; i < Avance.length; i++){
+				System.out.println(" " + Avance[i]);
+			}
 		}
 }
