@@ -1,6 +1,7 @@
 //Laboratorio N° 2 Ejercicio_01
 //Proyecto: juego del ahorcado
 //Autor: MARA MAMANI, DONNY MOISES
+//Colaboro: TAPIA HUAMANTUNA, ANTONY JUAN
 import java.util.*;
 public class Ahorcado{
   public static void main(String []args){

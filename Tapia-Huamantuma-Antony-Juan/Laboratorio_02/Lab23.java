@@ -1,4 +1,7 @@
-package Lab2;
+//Laboratorio N° 2 Ejercicio_01
+//Proyecto: Juego del ahorcado
+//Autor: Tapia Huamantuna, Antony Juan
+//Colaboro: Mara Mamani, Donny Moises
 import java.util.Scanner;
 public class Lab23 {
 	public static void main(String []args){
