@@ -139,4 +139,12 @@ public class Lab23 {
 				System.out.println(" " + Avance[i]);
 			}
 		}
+		//Metodo para ver el avance
+		public static String palabraFormada(String[] Avance, String Secreto){
+			String palabraActual = "";
+			for(int i = 0; i < Secreto.length(); i++){
+			  palabraActual += Avance[i];
+			}
+			return palabraActual;
+		}
 }
