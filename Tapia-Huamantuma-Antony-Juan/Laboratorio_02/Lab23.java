@@ -52,28 +52,50 @@ public class Lab23 {
 	                   "      | \n"+
 	                   "========= ";
 		String [] figuras = {ahor1, ahor2, ahor3,ahor4,ahor5,ahor6,ahor7};
-		int contador = 1;
 		String letra;
 		String [] palabras = {"programacion", "java", "identacion", "clases",
 		                              "objetos", "desarrollador", "pruebas"};
 		String palSecreta = getPalabraSecreta(palabras);
+		int turnos = 0;
+
 		System.out.println(figuras[0]);
+		String[] blanco = InicioBlancos(palSecreta);
 		mostrarBlancos(palSecreta);
 		System.out.println("\n");
-		
-		while(contador <= 6){
-		        letra = ingreseLetra();
-		        if (letraEnPalabraSecreta(letra, palSecreta))
-		                mostrarBlancosActualizados(letra);
-		        else
-		                System.out.println(figuras[contador]);
-		        
-		        contador = contador +1;
+	
+		int contador = 0;
+		while(contador < 7){
+			letra = ingreseLetra();
+			if (letraEnPalabraSecreta(letra, palSecreta)){
+				if(Comprobarsilaletrafueañadida(letra, blanco)){ 
+				  System.out.println(figuras[contador + 1]); 
+				  mostrarBlancosActualizados(blanco);
+				  turnos++;
+				  contador = contador +1;
+				}else{
+				  blanco = Actualizado(blanco, palSecreta, letra);
+				  System.out.println(figuras[contador]);
+				  mostrarBlancosActualizados(blanco);
+				  turnos++;
+				}  
+			}else{
+			  System.out.println(figuras[contador + 1]);
+			  mostrarBlancosActualizados(blanco);
+			  turnos++;
+			  contador = contador +1;
+			}
+			if(palabraFormada(blanco, palSecreta).equals(palSecreta)){
+				System.out.println("\nFelicidades" + "\ngano" + "\nTurnos: " + turnos);
+				break;
+			}
+			if(contador >= 7){
+			  System.out.println("Has sido ahorcado" + "\n   perdiste  " + "\nTurnos: " + contador);
+			  break;
+			}
 		}
-		//COMPLETAR PARA INDICAR SI GANÓ, PERDIÓ Y CUÁNTOS TURNOS NECESITÓ
-		
 		System.out.println("\n");
 	}
+	
 	public static String getPalabraSecreta(String [] lasPalabras){
 		    String palSecreta;
 		    int ind;
@@ -92,6 +114,7 @@ public class Lab23 {
 		public static String ingreseLetra(){
 		        String laLetra;
 		        Scanner sc = new Scanner(System.in);
+				System.out.println();
 		        System.out.println("Ingrese letra: ");
 		        laLetra = sc.next();
 		        while(laLetra.length()!= 1){
@@ -136,7 +159,7 @@ public class Lab23 {
 		//Metodo para imprimir el avance actualizado
 		public static void mostrarBlancosActualizados(String[] Avance){
 			for(int i = 0; i < Avance.length; i++){
-				System.out.println(" " + Avance[i]);
+				System.out.print(" " + Avance[i]);
 			}
 		}
 		//Metodo para ver el avance
