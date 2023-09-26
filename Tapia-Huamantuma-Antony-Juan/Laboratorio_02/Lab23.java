@@ -147,4 +147,13 @@ public class Lab23 {
 			}
 			return palabraActual;
 		}
+		//Metodo para comprobar si la letra fue añadida
+		public static boolean Comprobarsilaletrafueañadida(String letra, String[] Avance){
+			for(int i = 0; i < Avance.length; i++){
+			  if(letra.equals(Avance[i])){
+				return true;
+			  }
+			}
+			return false;
+		}
 }
