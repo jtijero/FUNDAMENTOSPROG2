@@ -113,8 +113,27 @@ public class Lab23 {
 				}
 		        return false;
 	    }
+		//Metodo para iniciar el juego con "_"
+		public static String[] InicioBlancos(String Secreto){
+			String[] Avance = new String[Secreto.length()];
+			for(int i = 0; i < Secreto.length(); i++){
+				Avance[i] = "_";
+			}
+			return Avance;
+		}
+		//Metodo para actualiar lo mostrado
+		public static String[] Actualizado(String[] Avance, String Secreto, String letra){
+			String[] AvanceActualizado = new String[Avance.length];
+			for(int i = 0; i < Secreto.length(); i++){
+				if(letra.equals(Secreto.substring(i, i+1))){
+					AvanceActualizado[i] = letra;
+				}else{
+					AvanceActualizado[i] = Avance[i];
+				}
+			}
+			return AvanceActualizado;
+		}
 		public static void mostrarBlancosActualizados(String letra){
-		        //COMPLETAR
 		        System.out.println("PROCESANDO.....");
 		}
 }
